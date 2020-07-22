@@ -1,2 +1,2 @@
 # good-news
-Python Django News Site
+Python Django Simple News Site
