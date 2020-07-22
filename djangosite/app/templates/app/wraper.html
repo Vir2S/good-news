@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>Page title</title>
+    {% load static %}
+    <!-- Prism CSS -->
+    <link rel="stylesheet" href="{% static "tinymce/css/prism.css" %}">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript for Materialize CSS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+<header>
+    <nav style="background: #0c5460">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo">GOOD NEWS</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/news">News</a></li>
+                    <li><a href="/contacts">Contacts</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="/account">{{ user.username }}</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    {% else %}
+                        <li><a href="/register">Register</a></li>
+                        <li><a href="/login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% if messages %}
+        {% for message in messages %}
+            <script>M.toast({html: '{{ message }}', classes: 'red rounded', displayLength: 2000});</script>
+        {% endfor %}
+    {% endif %}
+
+</header>
+<main>
+    <div class="container">
+        {% include 'app/includes/block.html' %}
+        {% block content %}
+        {% endblock %}
+    </div>
+</main>
+
+<footer class="page-footer" style="background: #0c5460">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="/">Home</a></li>
+                    <li><a class="grey-text text-lighten-3" href="/news">News</a></li>
+                    <li><a class="grey-text text-lighten-3" href="/contacts">Contacts</a></li>
+<!--                    <li><a class="grey-text text-lighten-3" href="/register">Register</a></li>
+                    <li><a class="grey-text text-lighten-3" href="/login">Login</a></li>
+/-->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <hr>
+        <div class="container">
+            &copy;2020 All rights reserved
+        </div>
+    </div>
+</footer>
+<script src="{% static 'tinymce/js/prism.js' %}"></script>
+</body>
+</html>
