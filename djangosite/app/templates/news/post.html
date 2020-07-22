@@ -1,0 +1,10 @@
+{% extends 'app/wraper.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col s12 m12 14">
+            <h1 class="text-title">{{ article.title }}</h1>
+            <p class="text-info">Posted: {{ article.date|date:"d M Y, H:i:s" }}</p>
+            {{ article.full_story|safe|linebreaks }}
+        </div>
+    </div>
+{% endblock %}

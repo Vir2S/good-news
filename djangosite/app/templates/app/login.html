@@ -1,0 +1,17 @@
+{% extends 'app/wraper.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m14">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br><br>
+                    <button class="btn" type="submit">Login</button>
+                </form>
+                <br>
+                If you don't have an account, <a href="/register"><b>register</b></a> instead.
+            </div>
+        </div>
+    </div>
+{% endblock %}
